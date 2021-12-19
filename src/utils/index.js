@@ -1,25 +1,15 @@
-import moment from "moment";
+import dayjs from "dayjs";
 
-export const getDates = (startYear, endYear) => {
-  var getDaysBetweenDates = function (startDate, endDate) {
-    var now = startDate.clone(),
-      dates = [];
+export const getMonth = (month = dayjs().month(), year = 2020) => {
+  const firstDayOfTheMonth = dayjs(new Date(year, month, 1)).day();
+  let weekdayCount = 0 - firstDayOfTheMonth;
 
-    while (now.isSameOrBefore(endDate)) {
-      dates.push({
-        day: now.format("D"),
-        month: now.format("MM"),
-        year: now.format("YYYY"),
-      });
-      now.add(1, "days");
-    }
-    console.log(startYear, endYear);
-    return dates;
-  };
+  const days = new Array(5).fill([]).map(() => {
+    return new Array(7).fill(null).map(() => {
+      weekdayCount++;
+      return dayjs(new Date(year, month, weekdayCount));
+    });
+  });
 
-  var startDate = moment(`${startYear}-12-01`);
-  var endDate = moment(`${endYear}-11-30`);
-
-  var dateList = getDaysBetweenDates(startDate, endDate);
-  return dateList;
+  return days;
 };
