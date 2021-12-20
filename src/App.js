@@ -1,18 +1,21 @@
 import "./App.css";
-import { getMonth } from "./utils";
+import React, { useEffect } from "react";
 import Month from "./components/Month";
-import { useState } from "react";
 import Header from "./components/Header";
+import useDate from "./hooks/useDate";
+const App = () => {
+  const { loadData } = useDate();
 
-function App() {
-  const [curMonth, setCurMonth] = useState(getMonth(10));
+  useEffect(() => {
+    loadData();
+  }, []);
 
   return (
     <div className="App">
       <Header />
-      <Month month={curMonth} />
+      <Month />
     </div>
   );
-}
+};
 
 export default App;

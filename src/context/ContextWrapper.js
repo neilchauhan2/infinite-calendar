@@ -2,9 +2,20 @@ import React, { useState } from "react";
 import GlobalContext from "./GlobalContext";
 
 const ContextWrapper = (props) => {
-  const [month, setMonth] = useState(11);
+  const [prevYear, setPrevYear] = useState(2021);
+  const [nextYear, setNextYear] = useState(2022);
+  const [days, setDays] = useState([]);
   return (
-    <GlobalContext.Provider value={{ month, setMonth }}>
+    <GlobalContext.Provider
+      value={{
+        prevYear,
+        setPrevYear,
+        nextYear,
+        setNextYear,
+        days,
+        setDays,
+      }}
+    >
       {props.children}
     </GlobalContext.Provider>
   );

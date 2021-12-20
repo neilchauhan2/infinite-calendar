@@ -1,65 +1,63 @@
-import { useState, useEffect } from "react";
-import moment from "moment";
+import { useContext } from "react";
+import GlobalContext from "../context/GlobalContext";
 
 const useDate = () => {
-  const [startYear, setStartYear] = useState(2020);
-  const [endYear, setEndYear] = useState(2021);
-  const [dates, setDates] = useState([]);
-  // useEffect(() => {
-  //   const newDates = getDates(startYear, endYear);
-  //   return newDates;
-  // }, []);
+  const { prevYear, nextYear, setPrevYear, setNextYear, days, setDays } =
+    useContext(GlobalContext);
 
-  const loadPrev = () => {
-    const newDates = getDates(startYear - 1, endYear - 1);
-    setStartYear(startYear - 1);
-    setEndYear(endYear - 1);
-    console.log(startYear, endYear);
-    return newDates;
+  const setLastDate = (month, year) => {
+    let curMonth = { lastDate: 0 };
+    if (
+      month === 1 ||
+      month === 3 ||
+      month === 5 ||
+      month === 7 ||
+      month === 8 ||
+      month === 10 ||
+      month === 12
+    ) {
+      curMonth.lastDate = 31;
+    } else if (month === 2) {
+      if (year % 4 === 0 || year % 400 === 0) {
+        curMonth.lastDate = 29;
+      } else {
+        curMonth.lastDate = 28;
+      }
+    } else {
+      curMonth.lastDate = 30;
+    }
+    return curMonth;
   };
 
-  const loadNext = () => {
-    const newDates = getDates(startYear + 1, endYear + 1);
-    setStartYear(startYear + 1);
-    setEndYear(endYear + 1);
-    console.log(startYear, endYear);
-    return newDates;
-  };
-
-  const loadInitial = () => {
-    const dates = getDates(2020, 2021);
-    return dates;
+  const loadData = () => {
+    let data = [];
+    for (let curYear = prevYear; curYear <= nextYear; curYear++) {
+      let month = 1;
+      let dateObject = { lastDate: 1 };
+      let firstDay = new Date(curYear, 0, 1).getDay();
+      dateObject.firstDay = firstDay;
+      dateObject.month = month;
+      for (let curMonth = month; curMonth <= 12; curMonth++) {
+        let objDate = setLastDate(curMonth, curYear);
+        for (let curDate = 1; curDate <= objDate["lastDate"]; curDate++) {
+          if (curDate === 1 && curMonth === 1 && curYear === prevYear) {
+            for (let l = -1; l < firstDay - 1; l++) data.push(null);
+          }
+          console.log(curYear);
+          data.push({
+            month: curMonth,
+            year: curYear,
+            date: curDate,
+          });
+        }
+      }
+    }
+    setDays(data);
   };
 
   return {
-    loadPrev,
-    loadNext,
-    loadInitial,
+    loadData,
   };
-};
-
-export const getDates = (startYear, endYear) => {
-  const getDaysBetweenDates = function (startDate, endDate) {
-    const now = startDate.clone(),
-      dates = [];
-
-    while (now.isSameOrBefore(endDate)) {
-      dates.push({
-        day: now.format("D"),
-        month: now.format("MM"),
-        year: now.format("YYYY"),
-      });
-      now.add(1, "days");
-    }
-    console.log(startYear, endYear);
-    return dates;
-  };
-
-  const startDate = moment(`${startYear}-12-01`);
-  const endDate = moment(`${endYear}-11-30`);
-
-  const dateList = getDaysBetweenDates(startDate, endDate);
-  return dateList;
 };
 
 export default useDate;

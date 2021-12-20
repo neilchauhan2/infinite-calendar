@@ -1,13 +1,20 @@
 import React from "react";
+import dayjs from "dayjs";
 
-const Day = ({ day, rowIdx }) => {
+const Day = ({ day }) => {
+  const date =
+    day !== null ? dayjs(new Date(day.year, day.month - 1, day.date)) : 0;
   return (
     <div className="border border-gray-200 flex flex-col">
       <header className="flex flex-col items-center">
-        {rowIdx === 0 && (
-          <p className="text-sm mt-1">{day.format("ddd").toUpperCase()}</p>
+        {day !== null && (
+          <>
+            <p className="text-sm p-1 my-1 text-center">{date.format("ddd")}</p>
+            <p className="text-sm p-1 my-1 text-center">
+              {date.format("MMM")} {date.format("D")} {date.format("YYYY")}
+            </p>
+          </>
         )}
-        <p className="text-sm p-1 my-1 text-center">{day.format("DD")}</p>
       </header>
     </div>
   );
