@@ -43,7 +43,6 @@ const useDate = () => {
           if (curDate === 1 && curMonth === 1 && curYear === prevYear) {
             for (let l = -1; l < firstDay - 1; l++) data.push(null);
           }
-          console.log(curYear);
           data.push({
             month: curMonth,
             year: curYear,
@@ -55,8 +54,28 @@ const useDate = () => {
     setDays(data);
   };
 
+  const loadPreviousYear = () => {
+    if (nextYear - 1 - (prevYear - 1) > 2) {
+      setPrevYear(prevYear - 1);
+      setNextYear(nextYear - 1);
+    } else {
+      setPrevYear(prevYear - 1);
+    }
+  };
+
+  const loadNextYear = () => {
+    if (nextYear + 1 - (prevYear + 1) > 2) {
+      setNextYear(nextYear + 1);
+      setPrevYear(prevYear + 1);
+    } else {
+      setNextYear(nextYear + 1);
+    }
+  };
+
   return {
     loadData,
+    loadNextYear,
+    loadPreviousYear,
   };
 };
 

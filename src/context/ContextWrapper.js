@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import GlobalContext from "./GlobalContext";
 
 const ContextWrapper = (props) => {
-  const [prevYear, setPrevYear] = useState(2021);
-  const [nextYear, setNextYear] = useState(2022);
+  const [prevYear, setPrevYear] = useState(2020);
+  const [nextYear, setNextYear] = useState(2021);
   const [days, setDays] = useState([]);
   return (
     <GlobalContext.Provider

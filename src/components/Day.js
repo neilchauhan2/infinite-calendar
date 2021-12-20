@@ -11,7 +11,7 @@ const Day = ({ day }) => {
           <>
             <p className="text-sm p-1 my-1 text-center">{date.format("ddd")}</p>
             <p className="text-sm p-1 my-1 text-center">
-              {date.format("MMM")} {date.format("D")} {date.format("YYYY")}
+              {date.format("MMM")} {date.format("D")}, {date.format("YYYY")}
             </p>
           </>
         )}
