@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import dayjs from "dayjs";
 import GlobalContext from "../context/GlobalContext";
+import Post from "./Post";
 
 const Day = ({ day, rowIdx }) => {
   const { posts } = useContext(GlobalContext);
@@ -16,7 +17,6 @@ const Day = ({ day, rowIdx }) => {
       <header className="flex flex-col items-center">
         {day !== null && (
           <>
-            <p className="text-sm p-1 my-1 text-center">{date.format("ddd")}</p>
             <p className="text-sm p-1 my-1 text-center">
               {date.format("MMM")} {date.format("D")}, {date.format("YYYY")}
             </p>
@@ -28,7 +28,7 @@ const Day = ({ day, rowIdx }) => {
                 date &&
                 date.format("DD") === d &&
                 date.format("MM") === m &&
-                date.format("YYYY") === y && <p>True</p>
+                date.format("YYYY") === y && <Post post={post} key={post.id} />
               );
             })}
           </>
