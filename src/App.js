@@ -7,6 +7,7 @@ import Header from "./components/Header";
 import useDate from "./hooks/useDate";
 import GlobalContext from "./context/GlobalContext";
 import Slide from "./components/Slide";
+import Modal from "./components/Modal";
 
 const App = () => {
   const { loadData } = useDate();
@@ -79,7 +80,8 @@ const App = () => {
   }, []);
 
   return (
-    <div className="App">
+    <div className="App mx-0 my-0">
+      <Modal />
       <Header />
       <Month />
     </div>
