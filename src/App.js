@@ -6,6 +6,7 @@ import Month from "./components/Month";
 import Header from "./components/Header";
 import useDate from "./hooks/useDate";
 import GlobalContext from "./context/GlobalContext";
+import Slide from "./components/Slide";
 
 const App = () => {
   const { loadData } = useDate();

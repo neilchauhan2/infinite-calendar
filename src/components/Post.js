@@ -38,7 +38,6 @@ const Post = ({ post }) => {
       />
       <img src={post.media[0].mediaurl} alt="post-img" />
       <div className="flex justify-center items-center">
-        <Legend />
         {post.typeofday !== null &&
           legends.map((l) => (
             <Legend
