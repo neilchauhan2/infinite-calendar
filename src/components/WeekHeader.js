@@ -3,26 +3,26 @@ import React from "react";
 const WeekHeader = () => {
   return (
     <div className="flex-1 grid grid-cols-7 ">
-      <div className="border border-gray-200 flex flex-col">
-        <p className="text-sm text-center font-bold">Sun</p>
+      <div className="border border-gray-200 flex flex-col bg-stone-100">
+        <p className="text-sm text-center font-bold">S</p>
       </div>
       <div className="border border-gray-200 flex flex-col">
-        <p className="text-sm  text-center font-bold">Mon</p>
+        <p className="text-sm  text-center font-bold">M</p>
       </div>
       <div className="border border-gray-200 flex flex-col">
-        <p className="text-sm  text-center font-bold">Tue</p>
+        <p className="text-sm  text-center font-bold">T</p>
       </div>
       <div className="border border-gray-200 flex flex-col">
-        <p className="text-sm text-center font-bold">Wed</p>
+        <p className="text-sm text-center font-bold">W</p>
       </div>
       <div className="border border-gray-200 flex flex-col">
-        <p className="text-sm  text-center font-bold">Thu</p>
+        <p className="text-sm  text-center font-bold">T</p>
       </div>
       <div className="border border-gray-200 flex flex-col">
-        <p className="text-sm text-center font-bold">Fri</p>
+        <p className="text-sm text-center font-bold">F</p>
       </div>
       <div className="border border-gray-200 flex flex-col">
-        <p className="text-sm text-center font-bold">Sat</p>
+        <p className="text-sm text-center font-bold">S</p>
       </div>
     </div>
   );
