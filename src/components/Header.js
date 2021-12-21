@@ -1,7 +1,4 @@
-import React, { useContext, useEffect } from "react";
-import dayjs from "dayjs";
-import GlobalContext from "../context/GlobalContext";
-import useDate from "../hooks/useDate";
+import React from "react";
 import WeekHeader from "./WeekHeader";
 
 const Header = () => {

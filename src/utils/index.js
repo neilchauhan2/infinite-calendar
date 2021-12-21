@@ -1,6 +1,6 @@
 export const prepareLegend = (post) => {
   const legends = [];
-
+  // eslint-disable-next-line
   post.typeofday.map((legend) => {
     if (legend === "hair cut") {
       legends.push({ text: "Cu", color: "bg-pink-100" });

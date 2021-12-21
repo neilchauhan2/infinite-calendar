@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 import StarRatingComponent from "react-star-rating-component";
-import GlobalContext from "../context/GlobalContext";
+
 import useModal from "../hooks/useModal";
 import { prepareLegend } from "../utils";
 import Legend from "./Legend";
@@ -8,7 +8,7 @@ import Legend from "./Legend";
 const Post = ({ post, idx }) => {
   const legends = post.typeofday != null ? prepareLegend(post) : null;
   const { openModal } = useModal();
-  const { setActivePost } = useContext(GlobalContext);
+
   const handleModal = () => {
     openModal();
   };

@@ -2,7 +2,6 @@ import React from "react";
 import Legend from "./Legend";
 import { prepareLegend } from "../utils";
 import StarRatingComponent from "react-star-rating-component";
-import dayjs from "dayjs";
 
 const Slide = ({ post }) => {
   const legends = post.typeofday != null ? prepareLegend(post) : null;

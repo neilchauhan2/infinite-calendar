@@ -2,7 +2,7 @@ import { useContext } from "react";
 import GlobalContext from "../context/GlobalContext";
 
 const useDate = () => {
-  const { prevYear, nextYear, setPrevYear, setNextYear, days, setDays } =
+  const { prevYear, nextYear, setPrevYear, setNextYear, setDays } =
     useContext(GlobalContext);
 
   const setLastDate = (month, year) => {

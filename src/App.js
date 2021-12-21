@@ -6,7 +6,6 @@ import Month from "./components/Month";
 import Header from "./components/Header";
 import useDate from "./hooks/useDate";
 import GlobalContext from "./context/GlobalContext";
-import Slide from "./components/Slide";
 import Modal from "./components/Modal";
 
 const App = () => {
@@ -15,6 +14,7 @@ const App = () => {
 
   useEffect(() => {
     loadData();
+    // eslint-disable-next-line
   }, [prevYear, nextYear]);
 
   useEffect(() => {
@@ -64,6 +64,7 @@ const App = () => {
       .then((res) => res.data)
       .then((data) => {
         const newPosts = [];
+        // eslint-disable-next-line
         data.responseobjects[0].posts.map((post) => {
           const postData = {
             id: post.id,
@@ -77,6 +78,7 @@ const App = () => {
         });
         setPosts(newPosts);
       });
+    // eslint-disable-next-line
   }, []);
 
   return (

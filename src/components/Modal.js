@@ -1,5 +1,5 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useContext, useRef, useEffect } from "react";
+import { Fragment, useContext } from "react";
 import GlobalContext from "../context/GlobalContext";
 import Slide from "./Slide";
 import Slider from "react-slick";
@@ -10,7 +10,6 @@ import useModal from "../hooks/useModal";
 const Modal = () => {
   const { posts, isOpen } = useContext(GlobalContext);
   const { closeModal } = useModal();
-  const ref = useRef(null);
 
   const settings = {
     dots: true,
