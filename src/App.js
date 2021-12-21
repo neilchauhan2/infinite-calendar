@@ -75,7 +75,7 @@ const App = () => {
         });
         setPosts(newPosts);
       });
-  });
+  }, []);
 
   return (
     <div className="App">
