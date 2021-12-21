@@ -1,6 +1,10 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { useState, Fragment } from "react";
+import { useState, Fragment, useContext } from "react";
+import GlobalContext from "../context/GlobalContext";
 import Slide from "./Slide";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const Modal = () => {
   let [isOpen, setIsOpen] = useState(true);
@@ -12,6 +16,16 @@ const Modal = () => {
   function openModal() {
     setIsOpen(true);
   }
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
+
+  const { posts } = useContext(GlobalContext);
 
   return (
     <>
@@ -51,18 +65,6 @@ const Modal = () => {
               leaveTo="opacity-0 scale-95"
             >
               <div className="inline-block w-full bg-black max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform  shadow-xl rounded-2xl">
-                {/* <Dialog.Title
-                  as="h3"
-                  className="text-lg font-medium leading-6 text-gray-900"
-                >
-                  Payment successful
-                </Dialog.Title>
-                <div className="mt-2">
-                  <p className="text-sm text-gray-500">
-                    Your payment has been successfully submitted. We’ve sent you
-                    an email with all of the details of your order.
-                  </p>
-                </div> */}
                 <div className="ml-4">
                   <button
                     type="button"
@@ -72,7 +74,9 @@ const Modal = () => {
                     <i className="fas fa-times-circle"></i>
                   </button>
                 </div>
-                <Slide />
+                <Slider {...settings}>
+                  {posts && posts.map((post, i) => <Slide post={post} />)}
+                </Slider>
               </div>
             </Transition.Child>
           </div>

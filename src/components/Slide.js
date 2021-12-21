@@ -1,18 +1,29 @@
 import React from "react";
 import Legend from "./Legend";
+import { prepareLegend } from "../utils";
 import StarRatingComponent from "react-star-rating-component";
+import dayjs from "dayjs";
 
-const Slide = () => {
+const Slide = ({ post }) => {
+  const legends = post.typeofday != null ? prepareLegend(post) : null;
+
   return (
     <div className="rounded-md mx-auto my-2 h-2/4 w-72 bg-white shadow-md ">
-      <img
-        src="https://ik.imagekit.io/bj96n986jb/prod/adbef521-7cf6-4344-af48-a9480df46549_fd85c711-9c37-4e73-9690-70f5a84477d3_cyYpwDTJq"
-        alt="img"
-        className="rounded-t-md"
-      />
+      <img src={post.media[0].mediaurl} alt="img" className="rounded-t-md" />
       <div className="flex ml-2">
-        <Legend text={"DC"} color={"bg-violet-200"} />
-        <div className="ml-40 mt-2">
+        {post.typeofday !== null &&
+          legends.map((l) => (
+            <Legend
+              text={l.text}
+              color={l.color}
+              key={post.id + l.text + "-legend"}
+            />
+          ))}
+        <div
+          className={`mt-2 ${
+            legends === null ? "ml-48" : legends.length > 1 ? "ml-32" : "ml-40"
+          }`}
+        >
           <StarRatingComponent
             name="rating"
             starCount={5}
@@ -24,15 +35,10 @@ const Slide = () => {
         </div>
       </div>
       <div className="px-4">
-        <h1 className="text-lg font-bold text-gray-600">29 December</h1>
-        <p className="text-sm">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem dolore
-          repellendus minima corrupti iusto in quisquam magnam illum nemo fugit,
-          ex veniam pariatur, eius quo modi cumque incidunt optio quidem
-          perferendis soluta facere. Enim nisi doloribus sequi voluptas,
-          consequuntur ea quia vitae, repellat modi sed, excepturi dicta
-          incidunt ducimus neque.
-        </p>
+        <h1 className="text-lg font-bold text-gray-600">
+          {post.calendardatetime.format("DD MMMM")}
+        </h1>
+        <p className="text-sm">{post.text}</p>
       </div>
       <button className="bg-white py-2 mt-2 rounded-b-lg border-t-2 border-gray-300 w-full font-bold text-gray-600 place-content-center">
         View Full Post
