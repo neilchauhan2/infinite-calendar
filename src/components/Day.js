@@ -20,7 +20,7 @@ const Day = ({ day, rowIdx }) => {
             <p className="text-sm p-1 my-1 text-center">
               {date.format("MMM")} {date.format("D")}, {date.format("YYYY")}
             </p>
-            {posts.map((post) => {
+            {posts.map((post, idx) => {
               const d = post.calendardatetime.format("DD");
               const m = post.calendardatetime.format("MM");
               const y = post.calendardatetime.format("YYYY");
@@ -28,7 +28,9 @@ const Day = ({ day, rowIdx }) => {
                 date &&
                 date.format("DD") === d &&
                 date.format("MM") === m &&
-                date.format("YYYY") === y && <Post post={post} key={post.id} />
+                date.format("YYYY") === y && (
+                  <Post post={post} key={post.id} idx={idx} />
+                )
               );
             })}
           </>

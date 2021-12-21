@@ -1,21 +1,16 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { useState, Fragment, useContext } from "react";
+import { Fragment, useContext, useRef, useEffect } from "react";
 import GlobalContext from "../context/GlobalContext";
 import Slide from "./Slide";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import useModal from "../hooks/useModal";
 
 const Modal = () => {
-  let [isOpen, setIsOpen] = useState(true);
-
-  function closeModal() {
-    setIsOpen(false);
-  }
-
-  function openModal() {
-    setIsOpen(true);
-  }
+  const { posts, isOpen } = useContext(GlobalContext);
+  const { closeModal } = useModal();
+  const ref = useRef(null);
 
   const settings = {
     dots: true,
@@ -24,8 +19,6 @@ const Modal = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
-
-  const { posts } = useContext(GlobalContext);
 
   return (
     <>

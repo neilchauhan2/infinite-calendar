@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import StarRatingComponent from "react-star-rating-component";
+import GlobalContext from "../context/GlobalContext";
+import useModal from "../hooks/useModal";
 import { prepareLegend } from "../utils";
 import Legend from "./Legend";
 
-const Post = ({ post }) => {
+const Post = ({ post, idx }) => {
   const legends = post.typeofday != null ? prepareLegend(post) : null;
+  const { openModal } = useModal();
+  const { setActivePost } = useContext(GlobalContext);
+  const handleModal = () => {
+    openModal();
+  };
 
   return (
-    <div className="post py-2 px-6">
+    <div className="post py-2 px-6" onClick={handleModal}>
       <StarRatingComponent
         name="rating"
         starCount={5}

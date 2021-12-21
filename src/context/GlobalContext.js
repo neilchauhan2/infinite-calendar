@@ -5,10 +5,12 @@ const GlobalContext = createContext({
   nextYear: 0,
   days: [],
   posts: [],
+  isOpen: false,
   setDays: (val) => {},
   setPrevYear: (val) => {},
   setNextYear: (val) => {},
   setPosts: (val) => {},
+  setIsOpen: (val) => {},
 });
 
 export default GlobalContext;

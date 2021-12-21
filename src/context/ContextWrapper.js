@@ -6,6 +6,8 @@ const ContextWrapper = (props) => {
   const [nextYear, setNextYear] = useState(2021);
   const [days, setDays] = useState([]);
   const [posts, setPosts] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <GlobalContext.Provider
       value={{
@@ -17,6 +19,8 @@ const ContextWrapper = (props) => {
         setDays,
         posts,
         setPosts,
+        isOpen,
+        setIsOpen,
       }}
     >
       {props.children}
